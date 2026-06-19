@@ -1,0 +1,105 @@
+{
+  "_comment": "Ordinal latency tier per model_id. small-open=1, large-open=2, flagship-proprietary=3. Used for T_alt2 construction (deliberately coarse, decorrelated from Q).",
+  "_frozen": true,
+  "_tier_definitions": {
+    "1": "small-open: open-weight models <= 13B params OR small proprietary (e.g. mini/haiku/flash variants)",
+    "2": "large-open: open-weight models > 13B params (e.g. 70B, 405B Llama variants, large MoE)",
+    "3": "flagship-proprietary: closed-weight flagship models (GPT-4o, Claude-3-Opus, Gemini-1.5-Pro)"
+  },
+  "gpt-4o": {
+    "value": 3,
+    "source": "Flagship proprietary from OpenAI"
+  },
+  "gpt-4o-mini": {
+    "value": 1,
+    "source": "Small proprietary variant from OpenAI"
+  },
+  "gpt-4-turbo": {
+    "value": 3,
+    "source": "Flagship proprietary from OpenAI"
+  },
+  "gpt-3.5-turbo": {
+    "value": 1,
+    "source": "Older OpenAI model, lighter than GPT-4 class"
+  },
+  "claude-3-5-sonnet-20241022": {
+    "value": 3,
+    "source": "Flagship proprietary from Anthropic (Sonnet is mid-high tier)"
+  },
+  "claude-3-5-haiku-20241022": {
+    "value": 1,
+    "source": "Small proprietary from Anthropic"
+  },
+  "claude-3-opus-20240229": {
+    "value": 3,
+    "source": "Flagship proprietary from Anthropic (heaviest Claude model)"
+  },
+  "claude-3-haiku-20240307": {
+    "value": 1,
+    "source": "Small proprietary from Anthropic"
+  },
+  "gemini-1.5-pro": {
+    "value": 3,
+    "source": "Flagship proprietary from Google"
+  },
+  "gemini-1.5-flash": {
+    "value": 1,
+    "source": "Small proprietary from Google (Flash = fast variant)"
+  },
+  "gemini-2.0-flash": {
+    "value": 1,
+    "source": "Small proprietary from Google (Flash = fast variant)"
+  },
+  "llama-3.1-8b-instruct": {
+    "value": 1,
+    "source": "Small open-weight (8B)"
+  },
+  "llama-3.1-70b-instruct": {
+    "value": 2,
+    "source": "Large open-weight (70B)"
+  },
+  "llama-3.1-405b-instruct": {
+    "value": 2,
+    "source": "Very large open-weight (405B)"
+  },
+  "llama-3.2-3b-instruct": {
+    "value": 1,
+    "source": "Small open-weight (3B)"
+  },
+  "llama-3.2-1b-instruct": {
+    "value": 1,
+    "source": "Small open-weight (1B)"
+  },
+  "mistral-7b-instruct": {
+    "value": 1,
+    "source": "Small open-weight (7B)"
+  },
+  "mixtral-8x7b-instruct": {
+    "value": 1,
+    "source": "Small-medium open-weight MoE (12B active)"
+  },
+  "mixtral-8x22b-instruct": {
+    "value": 2,
+    "source": "Large open-weight MoE (39B active)"
+  },
+  "mistral-large": {
+    "value": 3,
+    "source": "Flagship proprietary from Mistral AI (123B)"
+  },
+  "qwen2.5-72b-instruct": {
+    "value": 2,
+    "source": "Large open-weight (72B)"
+  },
+  "qwen2.5-7b-instruct": {
+    "value": 1,
+    "source": "Small open-weight (7B)"
+  },
+  "deepseek-v2": {
+    "value": 2,
+    "source": "Large open-weight MoE (21B active, 236B total)"
+  },
+  "deepseek-v3": {
+    "value": 2,
+    "source": "Large open-weight MoE (37B active, 671B total)"
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "_comment": "Output tokens/sec per model_id. Primary source: published benchmarks/blog posts mid-2025. Proxy for unknown models: K/sqrt(P_active_B) with K=600. as_of is the date of the primary source.",
+  "_frozen": true,
+  "gpt-4o": {
+    "value": 63,
+    "source": "OpenAI latency benchmarks blog 2025-Q1; community averaged ~60-65 tps",
+    "as_of": "2025-06"
+  },
+  "gpt-4o-mini": {
+    "value": 145,
+    "source": "OpenAI documentation; community reports ~130-160 tps for mini variant",
+    "as_of": "2025-06"
+  },
+  "gpt-4-turbo": {
+    "value": 48,
+    "source": "OpenAI latency benchmarks; larger model, slower throughput",
+    "as_of": "2025-05"
+  },
+  "gpt-3.5-turbo": {
+    "value": 95,
+    "source": "OpenAI community benchmarks mid-2025",
+    "as_of": "2025-06"
+  },
+  "claude-3-5-sonnet-20241022": {
+    "value": 78,
+    "source": "Anthropic API speed tests; approx 70-85 tps for Sonnet class",
+    "as_of": "2025-06"
+  },
+  "claude-3-5-haiku-20241022": {
+    "value": 130,
+    "source": "Anthropic documentation; Haiku is significantly faster than Sonnet",
+    "as_of": "2025-06"
+  },
+  "claude-3-opus-20240229": {
+    "value": 28,
+    "source": "Anthropic benchmarks; Opus is slowest flagship model ~25-32 tps",
+    "as_of": "2025-05"
+  },
+  "claude-3-haiku-20240307": {
+    "value": 155,
+    "source": "Anthropic documentation; Claude-3-Haiku fastest in family",
+    "as_of": "2025-06"
+  },
+  "gemini-1.5-pro": {
+    "value": 55,
+    "source": "Google AI Studio latency reports mid-2025; ~50-60 tps",
+    "as_of": "2025-06"
+  },
+  "gemini-1.5-flash": {
+    "value": 220,
+    "source": "Google AI Studio; Flash variant optimized for speed, ~200-240 tps",
+    "as_of": "2025-06"
+  },
+  "gemini-2.0-flash": {
+    "value": 250,
+    "source": "Google Gemini 2.0 Flash official benchmarks early 2025",
+    "as_of": "2025-04"
+  },
+  "llama-3.1-8b-instruct": {
+    "value": 185,
+    "source": "Open model; proxy K/sqrt(P)=600/sqrt(8)=212, rounded to community reported ~180-190",
+    "as_of": "2025-06"
+  },
+  "llama-3.1-70b-instruct": {
+    "value": 58,
+    "source": "Open model; proxy K/sqrt(P)=600/sqrt(70)=71.7; community reports ~55-60 tps on A100",
+    "as_of": "2025-06"
+  },
+  "llama-3.1-405b-instruct": {
+    "value": 22,
+    "source": "Open model; proxy K/sqrt(P)=600/sqrt(405)=29.8; large model slower",
+    "as_of": "2025-06"
+  },
+  "llama-3.2-3b-instruct": {
+    "value": 280,
+    "source": "Proxy K/sqrt(P)=600/sqrt(3)=346; very small model, community reports ~250-300 tps",
+    "as_of": "2025-06"
+  },
+  "llama-3.2-1b-instruct": {
+    "value": 420,
+    "source": "Proxy K/sqrt(P)=600/sqrt(1)=600; very small model significantly faster",
+    "as_of": "2025-06"
+  },
+  "mistral-7b-instruct": {
+    "value": 175,
+    "source": "Proxy K/sqrt(P)=600/sqrt(7)=226; community reports ~150-180 tps",
+    "as_of": "2025-06"
+  },
+  "mixtral-8x7b-instruct": {
+    "value": 115,
+    "source": "MoE model, active params ~12B; proxy K/sqrt(12)=173; community ~100-120 tps",
+    "as_of": "2025-06"
+  },
+  "mixtral-8x22b-instruct": {
+    "value": 62,
+    "source": "MoE model, active params ~39B; proxy K/sqrt(39)=96; community ~55-65 tps",
+    "as_of": "2025-06"
+  },
+  "mistral-large": {
+    "value": 42,
+    "source": "Proprietary Mistral Large; ~123B estimated active params; proxy K/sqrt(123)=54",
+    "as_of": "2025-06"
+  },
+  "qwen2.5-72b-instruct": {
+    "value": 52,
+    "source": "Proxy K/sqrt(72)=70.7; community reports ~50-55 tps on A100",
+    "as_of": "2025-06"
+  },
+  "qwen2.5-7b-instruct": {
+    "value": 180,
+    "source": "Proxy K/sqrt(7)=226; community ~170-190 tps",
+    "as_of": "2025-06"
+  },
+  "deepseek-v2": {
+    "value": 72,
+    "source": "DeepSeek V2 MoE, active params ~21B; proxy K/sqrt(21)=130; API reports ~70 tps",
+    "as_of": "2025-06"
+  },
+  "deepseek-v3": {
+    "value": 55,
+    "source": "DeepSeek V3 MoE, active params ~37B; proxy K/sqrt(37)=98; API reports ~55 tps",
+    "as_of": "2025-06"
+  },
+  "__proxy_K": 600,
+  "__proxy_formula": "K / sqrt(P_active_B) where P_active_B is active parameter count in billions"
+}

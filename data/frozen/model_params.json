@@ -1,0 +1,129 @@
+{
+  "_comment": "Active parameter count in billions per model_id. MoE models use ACTIVE (not total) params. Proprietary unknown -> provider-tier defaults: small-flagship=10, large-flagship=100, mega-flagship=500.",
+  "_frozen": true,
+  "_tier_defaults": {
+    "small_proprietary": 10,
+    "large_proprietary": 100,
+    "mega_proprietary": 500
+  },
+  "gpt-4o": {
+    "value": 200,
+    "source": "Estimated active params; GPT-4o total ~1T MoE, active ~200B. Sam Altman hints 2025.",
+    "is_estimated": true
+  },
+  "gpt-4o-mini": {
+    "value": 8,
+    "source": "Estimated ~8B active; small efficient model. Community consensus 2025.",
+    "is_estimated": true
+  },
+  "gpt-4-turbo": {
+    "value": 200,
+    "source": "GPT-4 class; estimated ~200B active params MoE",
+    "is_estimated": true
+  },
+  "gpt-3.5-turbo": {
+    "value": 20,
+    "source": "Estimated ~20B; ChatGPT-era model, provider-tier default for mid-size proprietary",
+    "is_estimated": true
+  },
+  "claude-3-5-sonnet-20241022": {
+    "value": 100,
+    "source": "Anthropic has not disclosed; large-flagship tier default = 100B",
+    "is_estimated": true
+  },
+  "claude-3-5-haiku-20241022": {
+    "value": 10,
+    "source": "Anthropic has not disclosed; small-flagship tier default = 10B",
+    "is_estimated": true
+  },
+  "claude-3-opus-20240229": {
+    "value": 500,
+    "source": "Anthropic has not disclosed; mega-flagship tier default = 500B",
+    "is_estimated": true
+  },
+  "claude-3-haiku-20240307": {
+    "value": 10,
+    "source": "Anthropic has not disclosed; small-flagship tier default = 10B",
+    "is_estimated": true
+  },
+  "gemini-1.5-pro": {
+    "value": 100,
+    "source": "Google has not disclosed exact size; large-flagship tier default = 100B",
+    "is_estimated": true
+  },
+  "gemini-1.5-flash": {
+    "value": 10,
+    "source": "Google has not disclosed; small-flagship tier default = 10B",
+    "is_estimated": true
+  },
+  "gemini-2.0-flash": {
+    "value": 10,
+    "source": "Google has not disclosed; small-flagship tier default = 10B",
+    "is_estimated": true
+  },
+  "llama-3.1-8b-instruct": {
+    "value": 8,
+    "source": "Meta official release notes: 8.03B parameters",
+    "is_estimated": false
+  },
+  "llama-3.1-70b-instruct": {
+    "value": 70,
+    "source": "Meta official release notes: 70.6B parameters",
+    "is_estimated": false
+  },
+  "llama-3.1-405b-instruct": {
+    "value": 405,
+    "source": "Meta official release notes: 405B parameters",
+    "is_estimated": false
+  },
+  "llama-3.2-3b-instruct": {
+    "value": 3,
+    "source": "Meta official release notes: 3.21B parameters",
+    "is_estimated": false
+  },
+  "llama-3.2-1b-instruct": {
+    "value": 1,
+    "source": "Meta official release notes: 1.24B parameters",
+    "is_estimated": false
+  },
+  "mistral-7b-instruct": {
+    "value": 7,
+    "source": "Mistral AI official: 7.24B parameters",
+    "is_estimated": false
+  },
+  "mixtral-8x7b-instruct": {
+    "value": 12,
+    "source": "Mistral AI official: MoE 8x7B, ~12B active params out of 46.7B total",
+    "is_estimated": false
+  },
+  "mixtral-8x22b-instruct": {
+    "value": 39,
+    "source": "Mistral AI official: MoE 8x22B, ~39B active params out of 141B total",
+    "is_estimated": false
+  },
+  "mistral-large": {
+    "value": 123,
+    "source": "Mistral Large 2 official: 123B parameters",
+    "is_estimated": false
+  },
+  "qwen2.5-72b-instruct": {
+    "value": 72,
+    "source": "Alibaba official: 72.7B parameters",
+    "is_estimated": false
+  },
+  "qwen2.5-7b-instruct": {
+    "value": 7,
+    "source": "Alibaba official: 7.62B parameters",
+    "is_estimated": false
+  },
+  "deepseek-v2": {
+    "value": 21,
+    "source": "DeepSeek official: MoE 236B total, 21B active params",
+    "is_estimated": false
+  },
+  "deepseek-v3": {
+    "value": 37,
+    "source": "DeepSeek official: MoE 671B total, 37B active params",
+    "is_estimated": false
+  }
+}

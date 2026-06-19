@@ -13,7 +13,7 @@ dependencies = []  # stdlib-only core
 
 [project.optional-dependencies]
 viz = ["matplotlib>=3.7"]
-eval = ["numpy>=1.24", "matplotlib>=3.7"]
+eval = ["numpy>=1.24", "matplotlib>=3.7", "pandas>=2.0", "pyarrow>=14.0", "tiktoken>=0.5", "scipy>=1.11"]
 dev = ["pytest>=7.4", "numpy>=1.24", "matplotlib>=3.7"]
 
 [tool.setuptools.packages.find]
