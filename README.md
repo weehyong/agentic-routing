@@ -5,9 +5,9 @@ adaptive routing layer between a queue of *work items* (subtasks) and a pool of 
 operators* (data-integration tools, LLMs, verifiers).
 
 Based on the position paper *Beyond Eddies: Agentic Data Integration with intelligent
-orchestration* (Wee Hyong Tok, 2026). This repository currently contains the **design and
-architecture** for the runtime; the implementation is described as a phased build in
-[`docs/DESIGN.md`](docs/DESIGN.md) §13 and is not yet written.
+orchestration* (Wee Hyong Tok, 2026). This repository contains both the **design**
+([`docs/DESIGN.md`](docs/DESIGN.md)) and a working **runtime + evaluation harness**
+(the `eddy` package). See [Installation](#installation) and [Running](#running) to get started.
 
 ## The idea in one paragraph
 
@@ -55,6 +55,80 @@ Prior LLM routers (RouterBench, RouteLLM, MasRouter) evaluate a *static* pool wi
 *non-convex four-objective* frontiers under *non-stationarity* — see
 [`docs/EVALUATION.md`](docs/EVALUATION.md).
 
+## Installation
+
+Requires **Python ≥ 3.11**. The core runtime is **stdlib-only**; extras pull in the
+scientific stack used by the evaluation harness and figures.
+
+```bash
+git clone <repo-url> eddies-router
+cd eddies-router
+
+# create + activate a virtual environment
+python -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
+
+# install the package (editable) with the extras you need
+pip install -e .                   # core runtime only (no third-party deps)
+pip install -e ".[dev]"            # + pytest, numpy, matplotlib  (run the tests)
+pip install -e ".[eval]"           # + pandas/scipy/tiktoken/huggingface_hub (full experiments)
+```
+
+Dependency extras are declared in [`pyproject.toml`](pyproject.toml):
+
+| Extra  | Pulls in | Use for |
+|--------|----------|---------|
+| (none) | stdlib only | importing and using the `eddy` runtime |
+| `dev`  | `pytest`, `numpy`, `matplotlib` | running the test suite |
+| `viz`  | `matplotlib` | regenerating figures |
+| `eval` | `numpy`, `matplotlib`, `pandas`, `pyarrow`, `tiktoken`, `scipy`, `huggingface_hub` | the real/synthetic coverage experiments |
+
+## Running
+
+### Test suite (verifies the five runtime invariants + skyline/coverage equivalence)
+
+```bash
+pip install -e ".[dev]"
+pytest                             # 145 tests
+```
+
+### Experiment 2 — synthetic skyline vs. scalarization sweep
+
+Shows that skyline routing reaches the full Pareto frontier while fixed-weight
+scalarization loses coverage on non-convex frontiers. Writes JSON/CSV/figures to
+`results/exp2/`.
+
+```bash
+pip install -e ".[eval]"
+python -m eddy.eval.run_exp2                 # default sweep (5 seeds, m=20)
+python -m eddy.eval.run_exp2 --seeds 3 --m 40 --out results/exp2
+```
+
+### Experiment 2 — "money figure" on real model pools
+
+Downloads RouterBench / LLMRouterBench via `huggingface_hub` (or uses any data already
+present under `data/raw/`) and computes coverage loss across six (T, R) construction
+cells. Output is **provenance-gated**: real data → `results/real/`, mock fallback →
+`results/mock/` (mock numbers are never written as figures).
+
+```bash
+pip install -e ".[eval]"
+python -m eddy.eval.exp2_real                # try real data, fall back to mock
+python -m eddy.eval.exp2_real --mock-only    # force seeded mock (offline / CI)
+python -m eddy.eval.exp2_real --out results/real
+```
+
+### Using the runtime as a library
+
+```python
+from eddy import Eddy, OperatorRegistry, WorkItem, OperatorProfile, QCTR
+
+# register operators with (Quality, Cost, Latency, Risk) profiles, enqueue work
+# items, then tick the router — it routes each item over the live Pareto skyline.
+# See docs/DESIGN.md §11 (Algorithm 1) and tests/test_runtime_invariants.py for
+# a complete, runnable construction.
+```
+
 ## Documentation
 
 | Document | Contents |
@@ -65,5 +139,6 @@ Prior LLM routers (RouterBench, RouteLLM, MasRouter) evaluate a *static* pool wi
 
 ## Status
 
-Design phase. No runtime code yet — `docs/DESIGN.md` §13 lays out the phased implementation
-(Phase 0 minimal runnable core → Phase 5 real OpenRouter / Omnigent backends).
+Runtime core + evaluation harness implemented and tested (145 passing tests). The phased
+build is tracked in `docs/DESIGN.md` §13 (Phase 0 minimal runnable core → Phase 5 real
+OpenRouter / Omnigent backends); the operator pool currently ships with simulated adapters.
